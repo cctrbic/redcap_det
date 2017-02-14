@@ -1,3 +1,4 @@
-*.user
-Properties
-
+**.user
+Properties/*
+obj
+bin

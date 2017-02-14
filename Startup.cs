@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace redcap_det
 {
@@ -34,7 +35,9 @@ namespace redcap_det
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddSerilog().CreateLogger(typeof(Program).FullName);
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+
             loggerFactory.AddDebug();
 
             app.UseMvc();
